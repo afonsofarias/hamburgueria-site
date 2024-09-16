@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -10,14 +11,19 @@
 <body>
     <header>
         <h1>Painel do Administrador</h1>
-        <!-- Painel de Login/Cadastro -->
-        <div id="login-panel">
-            <form id="login-form">
-                <input type="email" id="email" placeholder="Email" required>
-                <input type="password" id="password" placeholder="Senha" required>
-                <button type="submit">Login</button>
-            </form>
-            <button id="signup-btn">Cadastre-se</button>
+        
+        <!-- Menu de navegação -->
+        <nav>
+            <a href="admin.html">Admin</a> |
+            <a href="atendente.html">Atendente</a> |
+            <a href="cliente.html">Cliente</a> |
+            <a href="login.html">Login</a>
+        </nav>
+
+        <!-- Área do usuário -->
+        <div id="user-area" style="display: none;">
+            <span id="user-email"></span>
+            <button id="logout-btn">Sair</button>
         </div>
     </header>
 

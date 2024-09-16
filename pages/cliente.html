@@ -1,29 +1,57 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cliente - Visualizar Produtos</title>
+    <title>Cliente - Painel e Carrinho</title>
     <link rel="stylesheet" href="../styles/cliente.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.5/dist/umd/supabase.min.js"></script>
 </head>
 <body>
     <header>
-        <h1>Cardápio</h1>
-        <!-- Painel de Login/Cadastro -->
-        <div id="login-panel">
-            <form id="login-form">
-                <input type="email" id="email" placeholder="Email" required>
-                <input type="password" id="password" placeholder="Senha" required>
-                <button type="submit">Login</button>
-            </form>
-            <button id="signup-btn">Cadastre-se</button>
+        <h1>Bem-vindo(a), Cliente</h1>
+
+        <!-- Menu de navegação -->
+        <nav>
+            <a href="admin.html">Admin</a> |
+            <a href="atendente.html">Atendente</a> |
+            <a href="cliente.html">Cliente</a> |
+            <a href="login.html">Login</a>
+        </nav>
+        
+        <!-- Área do usuário -->
+        <div id="user-area" style="display: none;">
+            <span id="user-email"></span>
+            <button id="logout-btn">Sair</button>
         </div>
     </header>
 
-    <ul id="product-list">
-        <!-- Produtos serão carregados aqui -->
-    </ul>
+    <!-- Seção do Cardápio e Carrinho -->
+    <section id="cardapio-section">
+        <h2>Cardápio</h2>
+        <ul id="product-list">
+            <!-- Lista de produtos será carregada aqui -->
+        </ul>
+
+        <h2>Carrinho</h2>
+        <ul id="cart-list">
+            <!-- Itens do carrinho serão listados aqui -->
+        </ul>
+        <button id="finalizar-pedido-btn">Finalizar Pedido</button>
+    </section>
+
+    <section id="cliente-section">
+        <h2>Meus Dados</h2>
+        <p>Email: <span id="cliente-email"></span></p>
+        <p>Endereço: <span id="cliente-endereco"></span></p>
+        <h3>Histórico de Pedidos</h3>
+        <ul id="pedido-list">
+            <!-- Lista de pedidos será carregada aqui -->
+        </ul>
+        <h3>Cartão Fidelidade</h3>
+        <p>Pontos: <span id="cartao-fidelidade"></span></p>
+    </section>
 
     <script type="module" src="../scripts/cliente.js"></script>
 </body>
