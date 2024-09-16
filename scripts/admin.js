@@ -1,6 +1,31 @@
 
 import { supabase } from './supabase.js';
 
+// Função para verificar se o usuário é administrador
+async function verificarPermissoesAdmin() {
+    const user = supabase.auth.user();
+    if (!user) {
+        window.location.href = 'login.html'; // Redirecionar se não estiver logado
+        return;
+    }
+
+    const { data: usuario, error } = await supabase
+        .from('usuarios')
+        .select('tipo_usuario')
+        .eq('email', user.email)
+        .single();
+
+    if (error || !usuario || usuario.tipo_usuario !== 'admin') {
+        alert('Acesso restrito. Somente administradores podem acessar esta página.');
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // Carregar usuários e produtos se o usuário for administrador
+    listarUsuarios();
+    listarProdutos();
+}
+
 // Função para listar todos os usuários e permitir a promoção
 async function listarUsuarios() {
     const { data: usuarios, error } = await supabase.from('usuarios').select('*');
@@ -36,20 +61,6 @@ async function promoverUsuario(email, novoTipo) {
     }
 }
 
-// Função para cadastrar novos produtos
-async function cadastrarProduto(nome, preco) {
-    const { data, error } = await supabase
-        .from('produtos')
-        .insert([{ nome, preco }]);
-
-    if (error) {
-        console.error("Erro ao cadastrar produto:", error);
-        return;
-    }
-
-    alert("Produto cadastrado com sucesso!");
-}
-
 // Função para listar produtos
 async function listarProdutos() {
     const { data: produtos, error } = await supabase.from('produtos').select('*');
@@ -67,6 +78,5 @@ async function listarProdutos() {
     });
 }
 
-// Inicializar funções ao carregar a página
-document.addEventListener('DOMContentLoaded', listarUsuarios);
-document.addEventListener('DOMContentLoaded', listarProdutos);
+// Inicializar a função ao carregar a página
+document.addEventListener('DOMContentLoaded', verificarPermissoesAdmin);
