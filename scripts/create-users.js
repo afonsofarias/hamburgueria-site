@@ -1,7 +1,16 @@
 import { supabase } from './supabase.js';
 
-// Função para cadastrar apenas o administrador
+// Variável de controle para evitar múltiplas requisições
+let isProcessing = false;
+
+// Função para cadastrar o administrador
 async function criarUsuarioAdministrador() {
+    if (isProcessing) {
+        alert("Por favor, aguarde. Já estamos processando.");
+        return;
+    }
+    
+    isProcessing = true;  // Bloqueia múltiplas requisições
     try {
         const { data: adminUser, error: adminError } = await supabase.auth.signUp({
             email: 'admin@example.com',
@@ -17,7 +26,10 @@ async function criarUsuarioAdministrador() {
     } catch (error) {
         console.error("Erro ao criar administrador:", error);
         alert("Erro ao criar administrador: " + error.message);
+    } finally {
+        isProcessing = false;  // Libera o bloqueio após o processamento
     }
 }
 
+// Associar o botão ao evento de criar usuário
 document.getElementById('criar-usuarios-btn').addEventListener('click', criarUsuarioAdministrador);
