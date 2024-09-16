@@ -1,3 +1,6 @@
+import { supabase } from './supabase.js';
+
+// Função para cadastrar o administrador
 async function criarUsuarioAdministrador() {
     try {
         const { data: adminUser, error: adminError } = await supabase.auth.signUp({
@@ -17,4 +20,5 @@ async function criarUsuarioAdministrador() {
     }
 }
 
+// Associar o botão ao evento de criar usuário
 document.getElementById('criar-usuarios-btn').addEventListener('click', criarUsuarioAdministrador);
