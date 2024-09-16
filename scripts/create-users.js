@@ -1,7 +1,16 @@
 import { supabase } from './supabase.js';
 
+let isProcessing = false;  // Flag para evitar múltiplas requisições
+
 // Função para cadastrar usuários
 async function criarUsuarios() {
+    if (isProcessing) {
+        alert("Processo de criação de usuários já em andamento. Por favor, aguarde.");
+        return;
+    }
+    
+    isProcessing = true;  // Bloqueia novas requisições enquanto processa
+
     try {
         // Criar um usuário administrador
         const { data: adminUser, error: adminError } = await supabase.auth.signUp({
@@ -36,6 +45,8 @@ async function criarUsuarios() {
     } catch (error) {
         console.error("Erro ao criar usuários:", error);
         alert("Erro ao criar usuários: " + error.message);
+    } finally {
+        isProcessing = false;  // Libera o processo
     }
 }
 
