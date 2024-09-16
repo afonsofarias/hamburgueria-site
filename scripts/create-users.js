@@ -39,5 +39,5 @@ async function criarUsuarios() {
     }
 }
 
-// Função associada a um botão para criar os usuários
+// Associar o botão ao evento de criar usuários
 document.getElementById('criar-usuarios-btn').addEventListener('click', criarUsuarios);
