@@ -4,24 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="../styles/login.css">
+    <link rel="stylesheet" href="../styles/styles.css">
 </head>
 <body>
-    <h2>Login</h2>
-    <form id="login-form">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
+    <header>
+        <h1>Login</h1>
+    </header>
 
-        <label for="senha">Senha:</label>
-        <input type="password" id="senha" name="senha" required><br><br>
+    <section>
+        <form id="login-form">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Senha" required>
+            <button type="submit">Login</button>
+        </form>
+    </section>
 
-        <button type="submit">Entrar</button>
-    </form>
+    <footer>
+        <p>© 2024 Hamburgueria. Todos os direitos reservados.</p>
+    </footer>
 
-    <p>Não tem uma conta? <a href="signup.html">Cadastre-se</a></p>
-
-    <div id="status"></div>
-
-    <script type="module" src="../scripts/auth.js"></script>
+    <script type="module" src="../scripts/login.js"></script>
 </body>
 </html>
