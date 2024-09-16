@@ -1,45 +1,13 @@
+
 import { supabase } from './supabase.js';
 
-// Função para login
-async function login(event) {
-    event.preventDefault();
-    
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-
-    const { data, error } = await supabase.auth.signInWithPassword({
-        email: email,
-        password: password
-    });
-
-    if (error) {
-        alert("Erro no login: " + error.message);
-    } else {
-        alert("Login realizado com sucesso!");
-        carregarPedidos();  // Atualiza a lista de pedidos após login
-    }
-}
-
-// Função para cadastro
-async function signup() {
-    const email = prompt("Digite seu email:");
-    const password = prompt("Digite sua senha:");
-
-    const { data, error } = await supabase.auth.signUp({
-        email: email,
-        password: password
-    });
-
-    if (error) {
-        alert("Erro no cadastro: " + error.message);
-    } else {
-        alert("Cadastro realizado com sucesso! Faça login agora.");
-    }
-}
-
-// Carregar pedidos
+// Função para carregar os pedidos pendentes para o atendente
 async function carregarPedidos() {
-    const { data: pedidos, error } = await supabase.from('pedidos').select('*');
+    const { data: pedidos, error } = await supabase
+        .from('pedidos')
+        .select('*')
+        .eq('status', 'Pendente');
+
     if (error) {
         console.error("Erro ao carregar pedidos:", error);
         return;
@@ -47,4 +15,31 @@ async function carregarPedidos() {
 
     const orderList = document.getElementById('order-list');
     orderList.innerHTML = '';
-   
+    pedidos.forEach(pedido => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            Pedido #${pedido.id} - ${pedido.itens.length} itens
+            <button onclick="aceitarPedido(${pedido.id})">Aceitar Pedido</button>
+        `;
+        orderList.appendChild(li);
+    });
+}
+
+// Função para aceitar um pedido
+async function aceitarPedido(pedidoId) {
+    const { error } = await supabase
+        .from('pedidos')
+        .update({ status: 'Aceito' })
+        .eq('id', pedidoId);
+
+    if (error) {
+        console.error("Erro ao aceitar o pedido:", error);
+        return;
+    }
+
+    alert("Pedido aceito!");
+    carregarPedidos(); // Recarregar pedidos pendentes
+}
+
+// Inicializar a função ao carregar a página
+document.addEventListener('DOMContentLoaded', carregarPedidos);

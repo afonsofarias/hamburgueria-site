@@ -1,21 +1,7 @@
 
 import { supabase } from './supabase.js';
 
-// Função para promover um usuário a atendente ou admin
-async function promoverUsuario(email, novoTipo) {
-    const { data, error } = await supabase
-        .from('usuarios')
-        .update({ tipo_usuario: novoTipo })
-        .eq('email', email);
-
-    if (error) {
-        alert('Erro ao promover usuário: ' + error.message);
-    } else {
-        alert('Usuário promovido para ' + novoTipo + ' com sucesso!');
-    }
-}
-
-// Função para listar usuários e permitir a promoção
+// Função para listar todos os usuários e permitir a promoção
 async function listarUsuarios() {
     const { data: usuarios, error } = await supabase.from('usuarios').select('*');
     if (error) {
@@ -36,4 +22,51 @@ async function listarUsuarios() {
     });
 }
 
+// Função para promover um usuário
+async function promoverUsuario(email, novoTipo) {
+    const { data, error } = await supabase
+        .from('usuarios')
+        .update({ tipo_usuario: novoTipo })
+        .eq('email', email);
+
+    if (error) {
+        alert('Erro ao promover usuário: ' + error.message);
+    } else {
+        alert('Usuário promovido para ' + novoTipo + ' com sucesso!');
+    }
+}
+
+// Função para cadastrar novos produtos
+async function cadastrarProduto(nome, preco) {
+    const { data, error } = await supabase
+        .from('produtos')
+        .insert([{ nome, preco }]);
+
+    if (error) {
+        console.error("Erro ao cadastrar produto:", error);
+        return;
+    }
+
+    alert("Produto cadastrado com sucesso!");
+}
+
+// Função para listar produtos
+async function listarProdutos() {
+    const { data: produtos, error } = await supabase.from('produtos').select('*');
+    if (error) {
+        console.error("Erro ao carregar produtos:", error);
+        return;
+    }
+
+    const productList = document.getElementById('product-list');
+    productList.innerHTML = '';
+    produtos.forEach(produto => {
+        const li = document.createElement('li');
+        li.innerHTML = `${produto.nome} - R$${produto.preco}`;
+        productList.appendChild(li);
+    });
+}
+
+// Inicializar funções ao carregar a página
 document.addEventListener('DOMContentLoaded', listarUsuarios);
+document.addEventListener('DOMContentLoaded', listarProdutos);
