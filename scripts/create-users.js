@@ -17,7 +17,7 @@ async function criarUsuarioAdministrador() {
         if (adminError) throw adminError;
 
         await supabase.from('usuarios').insert([
-            { user_id: adminUser.user.id, nome: 'Administrador', email: 'admin@example.com', tipo_usuario: 'admin' }
+            { user_id: adminUser.user.id, nome: 'Administrador', email: 'afonsojansen@gmail.com', tipo_usuario: 'admin' }
         ]);
 
         alert("Usuário administrador criado com sucesso!");
