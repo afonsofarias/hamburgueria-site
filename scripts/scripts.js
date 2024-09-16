@@ -1,3 +1,5 @@
+import { supabase } from './supabase.js';
+
 async function fetchProducts() {
     let { data: produtos, error } = await supabase
         .from('produtos')
@@ -22,3 +24,6 @@ async function fetchProducts() {
         menuSection.appendChild(li);
     });
 }
+
+// Chamar a função ao carregar a página
+fetchProducts();
