@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamburgueria - Menu</title>
+    <link rel="stylesheet" href="../styles/global.css">
+    <link rel="stylesheet" href="../styles/menu.css">
+</head>
+<body>
+    <header>
+        <h1>Nosso Menu</h1>
+        <nav>
+            <ul>
+                <li><a href="./index.html">Início</a></li>
+                <li><a href="./menu.html">Menu</a></li>
+                <li><a href="./contato.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Hambúrgueres</h2>
+            <ul>
+                <li>Hambúrguer Tradicional - R$ 20,00 <button onclick="addToCart('Hambúrguer Tradicional', 20)">Adicionar ao carrinho</button></li>
+                <li>Cheeseburguer Especial - R$ 25,00 <button onclick="addToCart('Cheeseburguer Especial', 25)">Adicionar ao carrinho</button></li>
+                <li>Burguer Vegetariano - R$ 22,00 <button onclick="addToCart('Burguer Vegetariano', 22)">Adicionar ao carrinho</button></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Hamburgueria. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="../scripts/scripts.js"></script>
+</body>
+</html>
