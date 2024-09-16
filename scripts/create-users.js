@@ -1,53 +1,89 @@
 import { supabase } from './supabase.js';
 
-// Variável de controle para evitar múltiplas requisições
-let isProcessing = false;
+let isProcessing = false;  // Variável para evitar múltiplas requisições
 
-// Função para cadastrar o administrador, atendente e cliente
-async function criarUsuarios() {
+// Função para criar um usuário administrador
+async function criarUsuarioAdministrador() {
     if (isProcessing) {
         alert("Por favor, aguarde. Já estamos processando.");
         return;
     }
-    
-    isProcessing = true;  // Bloqueia múltiplas requisições
+    isProcessing = true;
     try {
-        // Criar um usuário administrador
         const { data: adminUser, error: adminError } = await supabase.auth.signUp({
             email: 'admin@example.com',
             password: 'admin123'
         });
         if (adminError) throw adminError;
 
-        // Criar um usuário atendente
+        await supabase.from('usuarios').insert([
+            { user_id: adminUser.user.id, nome: 'Administrador', email: 'admin@example.com', tipo_usuario: 'admin' }
+        ]);
+
+        alert("Usuário administrador criado com sucesso!");
+    } catch (error) {
+        console.error("Erro ao criar administrador:", error);
+        alert("Erro ao criar administrador: " + error.message);
+    } finally {
+        isProcessing = false;
+    }
+}
+
+// Função para criar um usuário atendente
+async function criarUsuarioAtendente() {
+    if (isProcessing) {
+        alert("Por favor, aguarde. Já estamos processando.");
+        return;
+    }
+    isProcessing = true;
+    try {
         const { data: atendenteUser, error: atendenteError } = await supabase.auth.signUp({
             email: 'atendente@example.com',
             password: 'atendente123'
         });
         if (atendenteError) throw atendenteError;
 
-        // Criar um cliente de teste
+        await supabase.from('usuarios').insert([
+            { user_id: atendenteUser.user.id, nome: 'Atendente', email: 'atendente@example.com', tipo_usuario: 'atendente' }
+        ]);
+
+        alert("Usuário atendente criado com sucesso!");
+    } catch (error) {
+        console.error("Erro ao criar atendente:", error);
+        alert("Erro ao criar atendente: " + error.message);
+    } finally {
+        isProcessing = false;
+    }
+}
+
+// Função para criar um usuário cliente
+async function criarUsuarioCliente() {
+    if (isProcessing) {
+        alert("Por favor, aguarde. Já estamos processando.");
+        return;
+    }
+    isProcessing = true;
+    try {
         const { data: clienteUser, error: clienteError } = await supabase.auth.signUp({
             email: 'cliente@example.com',
             password: 'cliente123'
         });
         if (clienteError) throw clienteError;
 
-        // Inserir os usuários na tabela `usuarios` com seus tipos
         await supabase.from('usuarios').insert([
-            { user_id: adminUser.user.id, nome: 'Administrador', email: 'admin@example.com', tipo_usuario: 'admin' },
-            { user_id: atendenteUser.user.id, nome: 'Atendente', email: 'atendente@example.com', tipo_usuario: 'atendente' },
             { user_id: clienteUser.user.id, nome: 'Cliente Teste', email: 'cliente@example.com', tipo_usuario: 'cliente' }
         ]);
 
-        alert("Usuários criados com sucesso!");
+        alert("Usuário cliente criado com sucesso!");
     } catch (error) {
-        console.error("Erro ao criar usuários:", error);
-        alert("Erro ao criar usuários: " + error.message);
+        console.error("Erro ao criar cliente:", error);
+        alert("Erro ao criar cliente: " + error.message);
     } finally {
-        isProcessing = false;  // Libera o bloqueio após o processamento
+        isProcessing = false;
     }
 }
 
-// Associar o botão ao evento de criar usuários
-document.getElementById('criar-usuarios-btn').addEventListener('click', criarUsuarios);
+// Associar cada função ao seu respectivo botão
+document.getElementById('criar-admin-btn').addEventListener('click', criarUsuarioAdministrador);
+document.getElementById('criar-atendente-btn').addEventListener('click', criarUsuarioAtendente);
+document.getElementById('criar-cliente-btn').addEventListener('click', criarUsuarioCliente);
