@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrador - Painel de Controle</title>
-    <link rel="stylesheet" href="../styles/admin.css">
+    <title>Atendente - Painel de Controle</title>
+    <link rel="stylesheet" href="../styles/atendente.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.5/dist/umd/supabase.min.js"></script>
 </head>
 <body>
     <header>
-        <h1>Painel do Administrador</h1>
+        <h1>Painel do Atendente</h1>
         <!-- Painel de Login/Cadastro -->
         <div id="login-panel">
             <form id="login-form">
@@ -21,14 +21,6 @@
         </div>
     </header>
 
-    <section id="produtos-section">
-        <h2>Gerenciar Produtos</h2>
-        <button id="add-product-btn">Adicionar Produto</button>
-        <ul id="product-list">
-            <!-- Lista de produtos será carregada aqui -->
-        </ul>
-    </section>
-
     <section id="pedidos-section">
         <h2>Visualizar Pedidos</h2>
         <ul id="order-list">
@@ -36,6 +28,6 @@
         </ul>
     </section>
 
-    <script type="module" src="../scripts/admin.js"></script>
+    <script type="module" src="../scripts/atendente.js"></script>
 </body>
 </html>

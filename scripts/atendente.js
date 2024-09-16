@@ -16,7 +16,7 @@ async function login(event) {
         alert("Erro no login: " + error.message);
     } else {
         alert("Login realizado com sucesso!");
-        carregarProdutos();  // Atualiza a lista de produtos após login
+        carregarPedidos();  // Atualiza a lista de pedidos após login
     }
 }
 
@@ -37,12 +37,14 @@ async function signup() {
     }
 }
 
-// Carregar produtos
-async function carregarProdutos() {
-    const { data: produtos, error } = await supabase.from('produtos').select('*');
+// Carregar pedidos
+async function carregarPedidos() {
+    const { data: pedidos, error } = await supabase.from('pedidos').select('*');
     if (error) {
-        console.error("Erro ao carregar produtos:", error);
+        console.error("Erro ao carregar pedidos:", error);
         return;
     }
 
-    const productList = document
+    const orderList = document.getElementById('order-list');
+    orderList.innerHTML = '';
+   

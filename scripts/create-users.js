@@ -11,7 +11,7 @@ async function criarUsuarioAdministrador() {
     isProcessing = true;
     try {
         const { data: adminUser, error: adminError } = await supabase.auth.signUp({
-            email: 'admin@example.com',
+            email: 'afonsojansen@gmail.com',
             password: 'admin123'
         });
         if (adminError) throw adminError;

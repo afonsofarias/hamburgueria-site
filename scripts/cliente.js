@@ -45,4 +45,20 @@ async function carregarProdutos() {
         return;
     }
 
-    const productList = document
+    const productList = document.getElementById('product-list');
+    productList.innerHTML = '';
+    produtos.forEach(produto => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            ${produto.nome} - R$ ${produto.preco.toFixed(2)}
+        `;
+        productList.appendChild(li);
+    });
+}
+
+// Associar os eventos de login e cadastro
+document.getElementById('login-form').addEventListener('submit', login);
+document.getElementById('signup-btn').addEventListener('click', signup);
+
+// Carregar produtos ao iniciar
+carregarProdutos();
