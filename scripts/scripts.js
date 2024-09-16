@@ -1,16 +1,20 @@
 import { supabase } from './supabase.js';
 
 async function fetchProducts() {
+    console.log("Função fetchProducts foi chamada");
+
     let { data: produtos, error } = await supabase
         .from('produtos')
         .select('*');
-    
+
     if (error) {
-        console.error("Erro ao buscar produtos:", error);
+        console.error("Erro ao buscar produtos:", error); // Exibe erro no console
         return;
     }
 
-    const menuSection = document.querySelector('ul');
+    console.log("Produtos recebidos do Supabase:", produtos); // Exibe os produtos recebidos
+
+    const menuSection = document.getElementById('menu-list');
     menuSection.innerHTML = '';  // Limpa a lista antes de exibir
 
     produtos.forEach(produto => {
