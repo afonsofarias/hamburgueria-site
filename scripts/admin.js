@@ -1,48 +1,39 @@
+
 import { supabase } from './supabase.js';
 
-// Função para login
-async function login(event) {
-    event.preventDefault();
-    
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-
-    const { data, error } = await supabase.auth.signInWithPassword({
-        email: email,
-        password: password
-    });
+// Função para promover um usuário a atendente ou admin
+async function promoverUsuario(email, novoTipo) {
+    const { data, error } = await supabase
+        .from('usuarios')
+        .update({ tipo_usuario: novoTipo })
+        .eq('email', email);
 
     if (error) {
-        alert("Erro no login: " + error.message);
+        alert('Erro ao promover usuário: ' + error.message);
     } else {
-        alert("Login realizado com sucesso!");
-        carregarProdutos();  // Atualiza a lista de produtos após login
+        alert('Usuário promovido para ' + novoTipo + ' com sucesso!');
     }
 }
 
-// Função para cadastro
-async function signup() {
-    const email = prompt("Digite seu email:");
-    const password = prompt("Digite sua senha:");
-
-    const { data, error } = await supabase.auth.signUp({
-        email: email,
-        password: password
-    });
-
+// Função para listar usuários e permitir a promoção
+async function listarUsuarios() {
+    const { data: usuarios, error } = await supabase.from('usuarios').select('*');
     if (error) {
-        alert("Erro no cadastro: " + error.message);
-    } else {
-        alert("Cadastro realizado com sucesso! Faça login agora.");
-    }
-}
-
-// Carregar produtos
-async function carregarProdutos() {
-    const { data: produtos, error } = await supabase.from('produtos').select('*');
-    if (error) {
-        console.error("Erro ao carregar produtos:", error);
+        console.error("Erro ao carregar usuários:", error);
         return;
     }
 
-    const productList = document
+    const userList = document.getElementById('user-list');
+    userList.innerHTML = '';
+    usuarios.forEach(usuario => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            ${usuario.email} - ${usuario.tipo_usuario}
+            <button onclick="promoverUsuario('${usuario.email}', 'atendente')">Promover a Atendente</button>
+            <button onclick="promoverUsuario('${usuario.email}', 'admin')">Promover a Admin</button>
+        `;
+        userList.appendChild(li);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', listarUsuarios);

@@ -6,16 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bem-vindo à Nossa Hamburgueria</title>
     <link rel="stylesheet" href="styles/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.5/dist/umd/supabase.min.js"></script>
 </head>
 <body>
     <header>
         <h1>Bem-vindo à Nossa Hamburgueria</h1>
 
-        <!-- Menu de navegação com links para Admin, Cliente, e Atendente -->
+        <!-- Menu de navegação com links dinâmicos -->
         <nav>
-            <a href="pages/admin.html">Admin</a> |
-            <a href="pages/atendente.html">Atendente</a> |
-            <a href="pages/cliente.html">Cliente</a> |
+            <a href="index.html">Início</a> |
+            <a href="menu.html">Menu</a> |
+            <a id="admin-link" href="pages/admin.html" style="display:none;">Admin</a> |
+            <a id="atendente-link" href="pages/atendente.html" style="display:none;">Atendente</a> |
+            <a href="pages/cliente.html">Minha Conta</a> |
             <a href="pages/login.html">Login</a>
         </nav>
     </header>
@@ -28,5 +31,7 @@
     <footer>
         <p>© 2024 Hamburgueria. Todos os direitos reservados.</p>
     </footer>
+
+    <script type="module" src="scripts/cliente.js"></script>
 </body>
 </html>
