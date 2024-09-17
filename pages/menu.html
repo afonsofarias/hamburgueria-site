@@ -1,16 +1,14 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hamburgueria - Menu</title>
-    <link rel="stylesheet" href="../styles/global.css">
-    <link rel="stylesheet" href="../styles/menu.css">
-    <!-- Incluir o SDK do Supabase diretamente do CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.5/dist/umd/supabase.min.js"></script>
+    <title>Cardápio</title>
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
-
 <body>
     <header>
-        <h1>Hamburgueria</h1>
+        <h1>Cardápio</h1>
         <nav>
             <a href="index.html">Início</a> |
             <a id="menu-link" href="menu.html">Menu</a> |
@@ -20,21 +18,18 @@
         </nav>
     </header>
 
-    <main>
-        <section>
-            <h2>Hambúrgueres</h2>
-            <!-- Aqui será carregada a lista de produtos -->
-            <ul id="menu-list">
-                <!-- Os produtos serão inseridos aqui dinamicamente via JavaScript -->
-            </ul>
-        </section>
-    </main>
+    <section id="cardapio">
+        <h2>Nossos Hambúrgueres</h2>
+        <ul id="product-list">
+            <!-- Produtos serão carregados aqui -->
+        </ul>
+    </section>
 
     <footer>
-        <p>&copy; 2024 Hamburgueria. Todos os direitos reservados.</p>
+        <p>© 2024 Hamburgueria. Todos os direitos reservados.</p>
     </footer>
 
-    <!-- Carrega os scripts -->
-    <script type="module" src="../scripts/scripts.js"></script>
+    <script type="module" src="scripts/verificarLogin.js"></script>
+    <script type="module" src="scripts/carregarProdutos.js"></script>
 </body>
 </html>
