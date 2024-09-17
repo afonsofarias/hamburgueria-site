@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esqueci Minha Senha</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Esqueci Minha Senha</h1>
+        <nav>
+            <a href="../index.html">Início</a> |
+            <a id="menu-link" href="menu.html">Menu</a> |
+            <a id="minha-conta-link" href="cliente.html" style="display: none;">Minha Conta</a> |
+            <a id="login-link" href="login.html">Login</a> |
+            <button id="logout-btn" style="display: none;">Sair</button>
+        </nav>
+    </header>
+
+    <section>
+        <p>Insira seu email para redefinir a senha:</p>
+        <form id="reset-form">
+            <input type="email" id="email" placeholder="Seu email" required>
+            <button type="submit">Redefinir Senha</button>
+        </form>
+        <p id="message"></p>
+    </section>
+
+    <footer>
+        <p>© 2024 Hamburgueria. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.5/dist/umd/supabase.min.js"></script>
+    <script type="module" src="../scripts/supabase.js"></script>
+    <script type="module" src="../scripts/esqueciSenha.js"></script>
+</body>
+</html
