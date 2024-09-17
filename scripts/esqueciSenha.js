@@ -5,8 +5,8 @@ async function esqueciSenha(event) {
     const email = document.getElementById('email').value;
 
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: 'https://hamburgueria-site-ten.vercel.app/pages/resetar-senha.html'  // Link para redirecionar após clicar no email
-    });
+        redirectTo: 'https://hamburgueria-site-ten.vercel.app/pages/resetar-senha.html'  // Link correto para redirecionamento
+    });    
 
     if (error) {
         document.getElementById('message').textContent = "Erro ao enviar email de redefinição: " + error.message;
