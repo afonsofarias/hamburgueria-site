@@ -1,5 +1,3 @@
-import { supabase } from './supabase.js';
-
 // Função para solicitar a redefinição de senha
 async function esqueciSenha(event) {
     event.preventDefault();
