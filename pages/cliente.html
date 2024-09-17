@@ -8,13 +8,13 @@
 </head>
 <body>
     <header>
-        <h1>Minha Conta - Cliente</h1>
+        <h1>Minha Conta</h1>
         <nav>
-            <a href="index.html">Início</a> |
-            <a href="menu.html">Menu</a> |
-            <a id="minha-conta-link" href="cliente.html">Minha Conta</a> |
-            <a id="login-link" href="login.html" style="display: none;">Login</a> |
-            <button id="logout-btn">Sair</button>
+            <a href="../index.html">Início</a> |
+            <a id="menu-link" href="menu.html">Menu</a> |
+            <a id="minha-conta-link" href="cliente.html" style="display: none;">Minha Conta</a> |
+            <a id="login-link" href="login.html">Login</a> |
+            <button id="logout-btn" style="display: none;">Sair</button>
         </nav>
     </header>
 
@@ -22,13 +22,14 @@
         <p>Nome: <span id="cliente-nome"></span></p>
         <p>Email: <span id="cliente-email"></span></p>
         <p>Endereço: <span id="cliente-endereco"></span></p>
-        <!-- Mais informações do cliente -->
     </section>
 
     <footer>
         <p>© 2024 Hamburgueria. Todos os direitos reservados.</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.5/dist/umd/supabase.min.js"></script>
+    <script type="module" src="../scripts/supabase.js"></script>
     <script type="module" src="../scripts/verificarLogin.js"></script>
 </body>
 </html>

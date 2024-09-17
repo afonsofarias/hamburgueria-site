@@ -1,40 +1,34 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrador - Painel de Controle</title>
-    <link rel="stylesheet" href="../styles/admin.css">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.5/dist/umd/supabase.min.js"></script>
+    <title>Admin</title>
+    <link rel="stylesheet" href="../styles/styles.css">
 </head>
 <body>
     <header>
-        <h1>Hamburgueria</h1>
+        <h1>Painel do Administrador</h1>
         <nav>
-            <a href="index.html">Início</a> |
+            <a href="../index.html">Início</a> |
             <a id="menu-link" href="menu.html">Menu</a> |
             <a id="minha-conta-link" href="cliente.html" style="display: none;">Minha Conta</a> |
             <a id="login-link" href="login.html">Login</a> |
             <button id="logout-btn" style="display: none;">Sair</button>
         </nav>
-    </header>    
+    </header>
 
-    <section id="produtos-section">
-        <h2>Gerenciar Produtos</h2>
-        <button id="add-product-btn">Adicionar Produto</button>
-        <ul id="product-list">
-            <!-- Lista de produtos será carregada aqui -->
-        </ul>
+    <section>
+        <h2>Gerenciar Usuários</h2>
+        <ul id="user-list"></ul>
     </section>
 
-    <section id="pedidos-section">
-        <h2>Visualizar Pedidos</h2>
-        <ul id="order-list">
-            <!-- Lista de pedidos será carregada aqui -->
-        </ul>
-    </section>
+    <footer>
+        <p>© 2024 Hamburgueria. Todos os direitos reservados.</p>
+    </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.5/dist/umd/supabase.min.js"></script>
+    <script type="module" src="../scripts/supabase.js"></script>
     <script type="module" src="../scripts/admin.js"></script>
 </body>
 </html>
