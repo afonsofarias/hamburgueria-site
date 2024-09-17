@@ -1,5 +1,3 @@
-import { supabase } from './supabase.js';
-
 // Verificar login e ajustar o menu
 async function verificarLogin() {
     const user = supabase.auth.user();

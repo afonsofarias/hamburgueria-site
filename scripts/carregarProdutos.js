@@ -1,5 +1,3 @@
-import { supabase } from './supabase.js';
-
 // Função para carregar produtos do Supabase
 async function carregarProdutos() {
     const { data: produtos, error } = await supabase

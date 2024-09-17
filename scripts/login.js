@@ -1,5 +1,3 @@
-import { supabase } from './supabase.js';
-
 // Função de login
 async function login(event) {
     event.preventDefault();
@@ -43,5 +41,4 @@ async function login(event) {
     }
 }
 
-// Adiciona evento ao formulário de login
 document.getElementById('login-form').addEventListener('submit', login);
