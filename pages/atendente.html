@@ -10,23 +10,16 @@
 </head>
 <body>
     <header>
-        <h1>Painel do Atendente</h1>
-
-        <!-- Menu de navegação -->
+        <h1>Hamburgueria</h1>
         <nav>
-            <a href="admin.html">Admin</a> |
-            <a href="atendente.html">Atendente</a> |
-            <a href="cliente.html">Cliente</a> |
-            <a href="login.html">Login</a>
+            <a href="index.html">Início</a> |
+            <a id="menu-link" href="menu.html">Menu</a> |
+            <a id="minha-conta-link" href="cliente.html" style="display: none;">Minha Conta</a> |
+            <a id="login-link" href="login.html">Login</a> |
+            <button id="logout-btn" style="display: none;">Sair</button>
         </nav>
-
-        <!-- Área do usuário -->
-        <div id="user-area" style="display: none;">
-            <span id="user-email"></span>
-            <button id="logout-btn">Sair</button>
-        </div>
     </header>
-
+    
     <section id="pedidos-section">
         <h2>Visualizar Pedidos</h2>
         <ul id="order-list">

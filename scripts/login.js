@@ -1,12 +1,13 @@
 import { supabase } from './supabase.js';
 
+// Função de login
 async function login(event) {
     event.preventDefault();
     
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    // Autenticar usuário com o Supabase
+    // Autenticar usuário
     const { data, error } = await supabase.auth.signInWithPassword({
         email: email,
         password: password
@@ -17,7 +18,7 @@ async function login(event) {
         return;
     }
 
-    // Verificar tipo de usuário e redirecionar
+    // Verificar o tipo de usuário e redirecionar
     const { data: usuario, error: userError } = await supabase
         .from('usuarios')
         .select('tipo_usuario')
@@ -42,4 +43,5 @@ async function login(event) {
     }
 }
 
+// Adiciona evento ao formulário de login
 document.getElementById('login-form').addEventListener('submit', login);
